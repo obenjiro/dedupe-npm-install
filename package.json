@@ -1,14 +1,14 @@
 {
   "name": "dedupe-npm-install",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prep": "cd libs/lib_a; npm i; cd ../lib_b; npm i; cd ../..; npm i",
+    "prep": "npm i ./libs/lib_a; npm i ./libs/lib_b",
     "dedupe-npm-install": "NODE_OPTIONS=\"--max-old-space-size=8192\" node ./bin/cli.js",
     "build": "rm -rf dist; webpack",
-    "check:ddp": "rm -rf node_modules; npm i; npm run dedupe-npm-install; npm run build",
-    "check": "rm -rf node_modules; npm i; npm run build"
+    "check:ddp": "rm -rf node_modules; npm i; npm run prep; npm run dedupe-npm-install; npm run build; rm -rf node_modules; npm uninstall lib_a; npm uninstall lib_b",
+    "check": "rm -rf node_modules; npm i; npm run prep; npm run build; rm -rf node_modules; npm uninstall lib_a; npm uninstall lib_b"
   },
   "bin": {
     "dedupe-npm-install": "./bin/cli.js",
@@ -18,8 +18,6 @@
   "author": "aiboy",
   "license": "MIT",
   "dependencies": {
-    "lib_a": "./libs/lib_a",
-    "lib_b": "./libs/lib_b",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
