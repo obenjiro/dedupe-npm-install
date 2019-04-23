@@ -5,8 +5,8 @@ const dirTree = require('async-directory-tree')
 
 let config = {}
 
-if (fs.existsSync(path.join(process.cwd(), 'cross-link.json'))) {
-  config = require(path.join(process.cwd(), 'cross-link.json'))
+if (fs.existsSync(path.join(process.cwd(), 'dedupe-npm-install.json'))) {
+  config = require(path.join(process.cwd(), 'dedupe-npm-install.json'))
 }
 
 async function crawl(path, options) {

@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-const cl = require('../cross-link');
+const cl = require('../dedupe-npm-install');
 
 cl();

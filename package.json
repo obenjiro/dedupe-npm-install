@@ -1,17 +1,18 @@
 {
-  "name": "cross-link",
+  "name": "dedupe-npm-install",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "prep": "cd libs/lib_a; npm i; cd ../lib_b; npm i; cd ../..; npm i",
-    "cross-link": "NODE_OPTIONS=\"--max-old-space-size=8192\" node ./bin/cli.js",
+    "dedupe-npm-install": "NODE_OPTIONS=\"--max-old-space-size=8192\" node ./bin/cli.js",
     "build": "rm -rf dist; webpack",
-    "check:cl": "rm -rf node_modules; npm i; npm run cross-link; npm run build",
+    "check:ddp": "rm -rf node_modules; npm i; npm run dedupe-npm-install; npm run build",
     "check": "rm -rf node_modules; npm i; npm run build"
   },
   "bin": {
-    "cross-link": "./bin/cli.js"
+    "dedupe-npm-install": "./bin/cli.js",
+    "ddpni": "./bin/cli.js"
   },
   "keywords": [],
   "author": "aiboy",
