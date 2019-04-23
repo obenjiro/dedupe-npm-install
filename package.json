@@ -1,22 +1,30 @@
 {
-  "name": "visualize",
+  "name": "cross-link",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "prep": "cd libs/lib_a; npm i; cd ../lib_b; npm i; cd ../..; npm i",
-    "build": "webpack",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cross-link": "NODE_OPTIONS=\"--max-old-space-size=8192\" node ./bin/cli.js",
+    "build": "rm -rf dist; webpack",
+    "check:cl": "rm -rf node_modules; npm i; npm run cross-link; npm run build",
+    "check": "rm -rf node_modules; npm i; npm run build"
+  },
+  "bin": {
+    "cross-link": "./bin/cli.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "aiboy",
+  "license": "MIT",
   "dependencies": {
-    "lodash": "^3.10.1",
     "lib_a": "./libs/lib_a",
-    "lib_b": "./libs/lib_b"
+    "lib_b": "./libs/lib_b",
+    "lodash": "^4.17.11"
   },
   "devDependencies": {
+    "async-directory-tree": "^2.3.1",
+    "fs-extra": "^7.0.1",
+    "gh-pages": "^2.0.1",
     "terser-webpack-plugin": "^1.2.3",
     "webpack": "^4.30.0",
     "webpack-bundle-analyzer": "^3.3.2",
