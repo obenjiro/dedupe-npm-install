@@ -94,7 +94,7 @@ module.exports = async function main() {
 
   const info = getPackagesInfo(data)
 
-  const jobs = info.map(async item => {
+  const jobs = info.map(item => {
     const collapseFns = getCollapseFns(config, item)
 
     const groups = collapseFns.map(collapseFn => {
@@ -103,27 +103,27 @@ module.exports = async function main() {
 
     const jobs = groups
       .filter(group => group.length > 1)
-      .map(async group => {
+      .map(group => {
         const sortedGroup = group.sort((a, b) => semver.rcompare(a.v, b.v))
         const fromItem = sortedGroup[0]
         const from = path.resolve(path.dirname(fromItem.path))
 
-        const jobs = sortedGroup.slice(1).map(async toItem => {
+        sortedGroup.slice(1).map(toItem => {
           const to = path.resolve(path.dirname(toItem.path))
 
+          console.log('========================================');
           console.log('[S] from:', from, 'to:', to)
           console.log('[V] from:', fromItem.v, 'to:', toItem.v)
+          
+          const dedupeTo = path.join(target_path, 'A_DEDUPE_FOLDER', toItem.name + toItem.v);
 
           try {
-            await fs.removeSync(to)
-            await fs.createSymlinkSync(from, to, 'dir')
+            fs.removeSync(to)
+            fs.createSymlinkSync(from, to, 'dir')
           } catch (e) {
             console.log('[E]', e.message)
           }
-        })
-        return await Promise.all(jobs)
+        });
       })
-    return await Promise.all(jobs)
   })
-  await Promise.all(jobs)
 }
