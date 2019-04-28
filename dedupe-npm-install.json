@@ -2,6 +2,6 @@
     "target_path": "./node_modules",
     "defaultCollapse": "same",
     "extraCollapse": {
-        "lodash": ["*"]
+        "sigmund": ["*"]
     }
 }

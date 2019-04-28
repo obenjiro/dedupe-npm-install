@@ -10,6 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lodash": "^3.10.1"
+    "sigmund": "1.0.1"
   }
 }

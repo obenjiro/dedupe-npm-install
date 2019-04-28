@@ -4,12 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prep": "npm i ./libs/lib_a; npm i ./libs/lib_b",
-    "unprep": "rm -rf node_modules; npm uninstall lib_a; npm uninstall lib_b",
+    "prep": "cd ./libs/lib_a; npm i; cd ../lib_b; npm i",
     "dedupe-npm-install": "NODE_OPTIONS=\"--max-old-space-size=8192\" node ./bin/cli.js",
     "build": "rm -rf dist; webpack",
-    "check:ddp": "rm -rf node_modules; npm i; npm run prep; npm run dedupe-npm-install; npm run build; npm run unprep",
-    "check": "rm -rf node_modules; npm i; npm run prep; npm run build; npm run unprep"
+    "check:ddp": "rm -rf node_modules; rm -rf package-lock.json; npm i; npm run prep; npm run dedupe-npm-install; npm run build",
+    "check": "rm -rf node_modules; rm -rf package-lock.json; npm i; npm run prep; npm run build"
   },
   "bin": {
     "dedupe-npm-install": "./bin/cli.js",
@@ -24,7 +23,9 @@
     "semver": "^5.5.1"
   },
   "devDependencies": {
-    "lodash": "^4.17.11",
+    "lib_a": "file:libs/lib_a",
+    "lib_b": "file:libs/lib_b",
+    "sigmund": "1.0.1",
     "terser-webpack-plugin": "^1.2.3",
     "webpack": "^4.30.0",
     "webpack-bundle-analyzer": "^3.3.2",
