@@ -26,7 +26,7 @@
     "lib_a": "file:libs/lib_a",
     "lib_b": "file:libs/lib_b",
     "sigmund": "1.0.1",
-    "terser-webpack-plugin": "^2.0.1",
+    "terser-webpack-plugin": "^3.0.0",
     "webpack": "^4.30.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.0"
