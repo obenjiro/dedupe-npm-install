@@ -27,8 +27,8 @@
     "lib_b": "file:libs/lib_b",
     "sigmund": "1.0.1",
     "terser-webpack-plugin": "^2.0.1",
-    "webpack": "^4.30.0",
+    "webpack": "^5.75.0",
     "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-cli": "^3.3.0"
+    "webpack-cli": "^5.0.1"
   }
 }
